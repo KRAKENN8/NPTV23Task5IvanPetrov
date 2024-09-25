@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class Main {
@@ -24,9 +25,12 @@ public class Main {
 
         for (int i = 0; i < massiv.length; i++) {
             Arrays.sort(massiv[i]);
+            Integer[] tempArray = Arrays.stream(massiv[i]).boxed().toArray(Integer[]::new);
+            Arrays.sort(tempArray, Collections.reverseOrder());
+            massiv[i] = Arrays.stream(tempArray).mapToInt(Integer::intValue).toArray();
         }
 
-        System.out.println("Отсортированный массив:");
+        System.out.println("Отсортированный массив от большего к меньшему:");
         for (int[] row : massiv) {
             System.out.println(Arrays.toString(row));
         }
